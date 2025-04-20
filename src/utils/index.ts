@@ -1,7 +1,7 @@
 import { USER_AGENT } from "../constants/index.js";
 import type { IAlertFeature } from "../types/index.js";
 
-async function makeNWSrequest<T>(url: string): Promise<T | null> {
+export async function makeNWSrequest<T>(url: string): Promise<T | null> {
   const headers = {
     "User-Agent": USER_AGENT,
     Accept: "application/geo+json",
@@ -21,7 +21,7 @@ async function makeNWSrequest<T>(url: string): Promise<T | null> {
   }
 }
 
-function formatAlert(feature: IAlertFeature): string {
+export function formatAlert(feature: IAlertFeature): string {
   const props = feature.properties;
   return [
     `Event: ${props.event || "Unknown"}`,

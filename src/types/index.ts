@@ -1,4 +1,4 @@
-export interface IAlertFeature {
+export interface IAlertsFeature {
   properties: {
     event?: string;
     areaDesc?: string;
@@ -8,11 +8,11 @@ export interface IAlertFeature {
   };
 }
 
-interface IAlertsResponse {
-  features: IAlertFeature[];
+export interface IAlertsResponse {
+  features: IAlertsFeature[];
 }
 
-interface IForecastPeriod {
+export interface IForecastPeriod {
   name?: string;
   temperature?: number;
   temperatureUnit?: string;
@@ -21,13 +21,13 @@ interface IForecastPeriod {
   shortForecast?: string;
 }
 
-interface IPointsResponse {
+export interface IPointsResponse {
   properties: {
     forecast?: string;
   };
 }
 
-interface ForecastResponse {
+export interface ForecastResponse {
   properties: {
     periods: IForecastPeriod[];
   };
