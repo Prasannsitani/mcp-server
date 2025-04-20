@@ -2,7 +2,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { NWS_API_BASE } from "../constants/index.js";
 import { formatAlert, makeNWSrequest } from "../utils/index.js";
-import { IAlertsResponse } from "../types/index.js";
+import type { IAlertsResponse } from "../types/index.js";
 
 export class WeatherTool {
   constructor(private readonly server: McpServer) {
@@ -18,7 +18,7 @@ export class WeatherTool {
         state: z
           .string()
           .length(2)
-          .describe("Two letter state code (e.g. CA, NY"),
+          .describe("Two letter state code (e.g. CA, NY)"),
       },
       async ({ state }) => {
         const stateCode = state.toUpperCase();

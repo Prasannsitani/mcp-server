@@ -1,5 +1,5 @@
 import { USER_AGENT } from "../constants/index.js";
-import type { IAlertFeature } from "../types/index.js";
+import type { IAlertsFeature } from "../types/index.js";
 
 export async function makeNWSrequest<T>(url: string): Promise<T | null> {
   const headers = {
@@ -10,9 +10,7 @@ export async function makeNWSrequest<T>(url: string): Promise<T | null> {
   try {
     const response = await fetch(url, { headers });
     if (!response.ok) {
-      throw new Error(
-        "Api Request Failure with status code : " + response.status
-      );
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
     return (await response.json()) as T;
   } catch (error) {
@@ -21,7 +19,7 @@ export async function makeNWSrequest<T>(url: string): Promise<T | null> {
   }
 }
 
-export function formatAlert(feature: IAlertFeature): string {
+export function formatAlert(feature: IAlertsFeature): string {
   const props = feature.properties;
   return [
     `Event: ${props.event || "Unknown"}`,

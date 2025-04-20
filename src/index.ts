@@ -1,5 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { WeatherTool } from "./tools/weather-tool.js";
 
 const server = new McpServer({
   name: "weather",
@@ -9,6 +10,8 @@ const server = new McpServer({
     tools: {},
   },
 });
+
+new WeatherTool(server);
 
 const main = async () => {
   const transport = new StdioServerTransport();
