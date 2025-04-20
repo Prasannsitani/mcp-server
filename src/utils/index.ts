@@ -1,4 +1,5 @@
 import { USER_AGENT } from "../constants/index.js";
+import type { IAlertFeature } from "../types/index.js";
 
 async function makeNWSrequest<T>(url: string): Promise<T | null> {
   const headers = {
@@ -18,4 +19,16 @@ async function makeNWSrequest<T>(url: string): Promise<T | null> {
     console.error("Error making NWS request:", error);
     return null;
   }
+}
+
+function formatAlert(feature: IAlertFeature): string {
+  const props = feature.properties;
+  return [
+    `Event: ${props.event || "Unknown"}`,
+    `Area: ${props.areaDesc || "Unknown"}`,
+    `Severity: ${props.severity || "Unknown"}`,
+    `Status: ${props.status || "Unknown"}`,
+    `Headline: ${props.headline || "No headline"}`,
+    "---",
+  ].join("\n");
 }
