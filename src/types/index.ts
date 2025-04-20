@@ -27,7 +27,7 @@ export interface IPointsResponse {
   };
 }
 
-export interface ForecastResponse {
+export interface IForecastResponse {
   properties: {
     periods: IForecastPeriod[];
   };

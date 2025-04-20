@@ -1,5 +1,5 @@
 import { USER_AGENT } from "../constants/index.js";
-import type { IAlertsFeature } from "../types/index.js";
+import type { IAlertsFeature, IForecastPeriod } from "../types/index.js";
 
 export async function makeNWSrequest<T>(url: string): Promise<T | null> {
   const headers = {
@@ -27,6 +27,18 @@ export function formatAlert(feature: IAlertsFeature): string {
     `Severity: ${props.severity || "Unknown"}`,
     `Status: ${props.status || "Unknown"}`,
     `Headline: ${props.headline || "No headline"}`,
+    "---",
+  ].join("\n");
+}
+
+export function formatForcast(period: IForecastPeriod): string {
+  return [
+    `${period.name || "Unknown"}:`,
+    `Temperature: ${period.temperature || "Unknown"}°${
+      period.temperatureUnit || "F"
+    }`,
+    `Wind: ${period.windSpeed || "Unknown"} ${period.windDirection || ""}`,
+    `${period.shortForecast || "No forecast available"}`,
     "---",
   ].join("\n");
 }
